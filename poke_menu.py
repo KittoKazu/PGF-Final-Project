@@ -10,12 +10,12 @@ def display_menu():
     print('Please choose from the following functionalities:')
     print('Function one: Convert Pokémon to matching drink (D)')
     print('Function two: Convert Drink to matching Pokémon (P)')
-    print('Function three: Matching drink quizz (Q)')
+    print('Function three: Matching drink quiz (Q)')
     print_stars()
 
 def print_stars():
     """
-    prints a line of stars for decorative and readability purposes.
+    Prints a line of stars for decorative and readability purposes.
     """
     print('*' * 50)
 
@@ -30,7 +30,7 @@ def run_subsystem(input_value):
         #Will point to pokémon matching subsystem
         poke_drink_to_pokemon.run_drink_to_pokemon()
     else:
-        #Will point to quizz subsystem
+        #Will point to quiz subsystem
         print(input_value)
 
 def get_func_input():

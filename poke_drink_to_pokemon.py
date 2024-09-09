@@ -30,6 +30,9 @@ def convert_pokemon(convert_string):
         output_value *= ord(convert_string[i])
         #ord function grabs the ascii value of a character.
     poke_id = output_value % MAX_POKEMON
+    if poke_id == 0:
+        poke_id =+ 1
+        #Fixes a bug where the program can't make a valid API call when poke_id is 0
     return poke_id
 
 def get_pokemon(poke_id):
