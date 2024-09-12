@@ -70,6 +70,9 @@ def print_ascii(filepath):
     """
     Uses a specified filepath to print an ascii art from a txt file, not cluttering the code.
     """
-    with open(f'{filepath}', 'r') as file:
-        ascii_art = file.read()
-        print(ascii_art)
+    try:
+        with open(f'{filepath}', 'r') as file:
+            ascii_art = file.read()
+            print(ascii_art)
+    except FileNotFoundError:
+        print('No .txt file found for ascii art.')
