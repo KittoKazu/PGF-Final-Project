@@ -1,5 +1,5 @@
 import requests
-import poke_main
+import poke_menu as menu
 
 def call_api(url, param):
     """
@@ -11,13 +11,13 @@ def call_api(url, param):
         response_dict = response.json()
         return response_dict
     except requests.exceptions.ConnectionError:
-        print('Cannot connect to API, returning to menu')
-        poke_main.main()
+        print('Cannot connect to API.')
+        menu.ask_to_resume()
 
 def check_api(response_name):
     """
     Checks if connection to the API was successful, if not, returns to the main menu of the program.
     """
     if response_name.status_code != 200:
-        print('Something went wrong with finding a connection, returning to menu.')
-        poke_main.main()
+        print(f'Something went wrong with finding a connection. Error code: {response_name.status_code}')
+        menu.ask_to_resume()
