@@ -9,7 +9,7 @@ def run_drink_to_pokemon():
     Displays an into to this subsystem and displays the final results at the end.
     """
     poke_menu.print_stars()
-    print('Welcome to drink matching menu')
+    print('Welcome to the drink matching menu')
     poke_menu.print_stars()
     print("First let's search for a drink. Try Pina Colada!")
 
