@@ -1,4 +1,5 @@
 import poke_drink_to_pokemon
+import poke_main
 
 def display_menu():
     """
@@ -46,3 +47,18 @@ def get_func_input():
             #Handles error and asks user for another input.
             print('Please enter a valid option.')
             print_stars()
+
+def ask_to_resume():
+    """
+    Function that asks the user if they want to keep the program running to use another functionality.
+    """
+    while True:
+        print_stars()
+        resume_input = input('Would you like to continue using the program? (Y/N): ').lower()
+        if resume_input == 'y' or resume_input == 'n':
+            if resume_input == 'n':
+                exit()
+            if resume_input == 'y':
+                poke_main.main()
+        else:
+            print('Please enter a valid input.')
