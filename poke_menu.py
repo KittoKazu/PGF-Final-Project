@@ -1,10 +1,13 @@
 import poke_drink_to_pokemon
 import poke_main
 
+MENU_ART = 'menu_ascii.txt'
+
 def display_menu():
     """
     Prints the intro to the program.
     """
+    print_ascii(MENU_ART)
     print_stars()
     print('Welcome to the Pokécocktail program')
     print_stars()
@@ -18,7 +21,7 @@ def print_stars():
     """
     Prints a line of stars for decorative and readability purposes.
     """
-    print('*' * 50)
+    print('*' * 70)
 
 def run_subsystem(input_value):
     """
@@ -62,3 +65,11 @@ def ask_to_resume():
                 poke_main.main()
         else:
             print('Please enter a valid input.')
+
+def print_ascii(filepath):
+    """
+    Uses a specified filepath to print an ascii art from a txt file, not cluttering the code.
+    """
+    with open(f'{filepath}', 'r') as file:
+        ascii_art = file.read()
+        print(ascii_art)
