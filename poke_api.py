@@ -1,6 +1,6 @@
 import requests
 import poke_menu as menu
-
+POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon/'
 def call_api(url, param):
     """
     Function that calls an api based on a base URL and a parameter. (custom input)
