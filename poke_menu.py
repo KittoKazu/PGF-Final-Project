@@ -1,4 +1,5 @@
 import poke_drink_to_pokemon
+import poke_pokemon_to_drink
 import poke_main
 
 MENU_ART = 'menu_ascii.txt'
@@ -29,7 +30,7 @@ def run_subsystem(input_value):
     """
     if input_value == 'd':
         #Will point to drink matching subsystem
-        print(input_value)
+        poke_pokemon_to_drink.run_pokemon_to_drink()
     elif input_value == 'p':
         #Will point to pokémon matching subsystem
         poke_drink_to_pokemon.run_drink_to_pokemon()

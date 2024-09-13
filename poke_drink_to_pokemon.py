@@ -11,9 +11,9 @@ def run_drink_to_pokemon():
     Displays an into to this subsystem and displays the final results at the end.
     """
     menu.print_stars()
-    print('Welcome to the drink matching menu')
+    print('Welcome to the drink matching menu!')
     menu.print_stars()
-    print("First let's search for a drink. Try Pina Colada!")
+    print("First let's search for a drink. Try Pina Colada or Mojito!")
 
     drink_string = get_drinkinput()
     pokemon_id = convert_pokemon(drink_string)
@@ -21,7 +21,7 @@ def run_drink_to_pokemon():
 
     menu.print_stars()
     print(f'Your searched drink is: {drink_string}')
-    print(f'Your matching pokemon is: {poke_name}')
+    print(f'Your matching pokemon is: {poke_name.capitalize()}')
 
 def convert_pokemon(convert_string):
     """
