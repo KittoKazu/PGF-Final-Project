@@ -18,8 +18,7 @@ def run_drink_to_pokemon():
     print("First let's search for a drink. Try Pina Colada or Mojito!")
 
     drink_string = get_drinkinput()
-    pokemon_id = convert_pokemon(drink_string)
-    poke_name = get_pokemon(pokemon_id)
+    poke_name = convert_pokemon(drink_string)
 
     menu.print_stars()
     print(f'Your searched drink is: {drink_string}')
@@ -27,7 +26,7 @@ def run_drink_to_pokemon():
 
 def convert_pokemon(convert_string):
     """
-    Calculates the ID of a Pokémon based on the ascii codes of the drink name.
+    Calculates the ID of a Pokémon based on the ascii codes of the drink name.Then returns the name of the Pokemon
     """
     output_value = 1
     for i in range(len(convert_string)):
@@ -37,7 +36,9 @@ def convert_pokemon(convert_string):
     if poke_id == 0:
         poke_id =+ 1
         #Fixes a bug where the program can't make a valid API call when poke_id is 0
-    return poke_id
+
+    poke_name = get_pokemon(poke_id)
+    return poke_name
 
 def get_pokemon(poke_id):
     """

@@ -1,5 +1,6 @@
 import poke_drink_to_pokemon
 import poke_pokemon_to_drink
+import poke_quiz
 import poke_main
 
 MENU_ART = 'art/menu_ascii.txt'
@@ -15,7 +16,7 @@ def display_menu():
     print('Please choose from the following functionalities:')
     print('Function one: Convert Pokémon to matching drink (D)')
     print('Function two: Convert Drink to matching Pokémon (P)')
-    print('Function three: Matching drink quiz (Q)')
+    print('Function three: Matching Pokemon/drink quiz (Q)')
     print_stars()
 
 def print_stars():
@@ -36,7 +37,7 @@ def run_subsystem(input_value):
         poke_drink_to_pokemon.run_drink_to_pokemon()
     else:
         #Will point to quiz subsystem
-        print(input_value)
+        poke_quiz.run_quiz()
 
 def get_func_input():
     """
@@ -44,7 +45,7 @@ def get_func_input():
     """
     while True:
         input_value = input('Please enter your choice: ').lower()
-        if input_value == 'd' or input_value == 'p' or input_value == 'q':
+        if input_value in ['d','p','q']:
             #Checks if the input matches one of the valid options.
             return input_value
         else:

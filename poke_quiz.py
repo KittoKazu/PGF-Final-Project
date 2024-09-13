@@ -1,77 +1,143 @@
 import random
-import requests
 
+from requests import options
+
+import poke_api
+import poke_menu as menu
+import poke_pokemon_to_drink
+import poke_drink_to_pokemon
 from poke_api import POKEAPI_URL
+
 RANDOM_DRINK_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
 answer_array = []
 
 def run_quiz():
-    add_randoms()
-    print(answer_array)
-    random_pokemon = get_randompokemon()
-    print(random_pokemon)
-    right_answer = match_drink(random_pokemon)
-    print(answer_array)
+    """
+    Displays an intro to the quiz subsystem then
+    """
+    menu.print_stars()
+    print('Welcome to the quiz game subsystem!')
+    menu.print_stars()
+
+    answer_array.clear()
+    #reset the answer array to prevent bugs when looping the entire program.
+    choice = choose_quiz_type()
+    point_to_question(choice)
+
+def choose_quiz_type():
+    """
+    Asks the user if they want a question about a matching Pokemon or a matching Drink.
+    """
+    print('Please choose the type of quiz \nGuess drink with Pokemon [1]\nGuess Pokemon with drink [2]')
+    while True:
+        quiz_choice = input('Which type of quiz would you like to choose?: ')
+        if quiz_choice in ['1','2']:
+            return quiz_choice
+        else:
+            menu.print_stars()
+            print('Please enter a valid option.')
+
+def point_to_question(choice):
+    """
+    Goes to the right question type
+    """
+    if choice == '1':
+        run_drink_quiz()
+    else:
+        run_pokemon_quiz()
+
+def run_pokemon_quiz():
+    menu.print_stars()
+    print('Welcome to the Pokemon quiz!')
+    question_type = ask_question_type()
+    question_drink = pick_drink(question_type)
+    menu.print_stars()
+    print(f'Your drink is: {question_drink}')
+    right_answer = poke_drink_to_pokemon.convert_pokemon(question_drink)
+
+    answer_array.append(right_answer)
+    add_random_pokemon()
     shuffle_answers()
-    print(answer_array)
+
     print_options()
     answer = ask_answer()
     check_answer(answer, right_answer)
+    print(f'The right answer was: {right_answer.upper()}')
 
+def run_drink_quiz():
+    menu.print_stars()
+    print('Welcome to the drink quiz!')
+    question_type = ask_question_type()
+    question_pokemon = pick_pokemon(question_type)
+    menu.print_stars()
+    print(f'Your Pokemon is: {question_pokemon.capitalize()}')
+    right_answer = poke_pokemon_to_drink.convert_to_drink(question_pokemon)
 
-def add_randoms():
+    answer_array.append(right_answer)
+    add_random_drinks()
+    shuffle_answers()
+
+    print_options()
+    answer = ask_answer()
+    check_answer(answer, right_answer)
+    print(f'The right answer was: {right_answer}')
+
+def ask_question_type():
+    print('Please choose the type of question you would like to choose. \nRandom Question [1] \nPredetermined question [2]')
+    question_type = input('Please enter your desired question type: ')
+    while True:
+        if question_type in ['1','2']:
+            return question_type
+        else:
+            menu.print_stars()
+            print('Please enter a valid option.')
+
+def pick_pokemon(question_type):
+    if question_type == '1':
+        pokemon_name = get_random_pokemon()
+    else:
+        pokemon_name = 'charizard'
+    return pokemon_name
+
+def pick_drink(question_type):
+    if question_type == '1':
+        drink_name = get_random_drink()
+    else:
+        drink_name = 'Pina Colada'
+    return drink_name
+
+def get_random_pokemon():
+    random_id = random.randint(1,1025)
+    response_dict = poke_api.call_api(POKEAPI_URL, random_id)
+    poke_name = response_dict['name']
+    return poke_name
+
+def get_random_drink():
+    drink_dict = poke_api.call_api(RANDOM_DRINK_URL)
+    drink_string = drink_dict['drinks'][0]['strDrink']
+    return drink_string
+
+def add_random_drinks():
     for i in range(2):
-
-        random_json = requests.get(RANDOM_DRINK_URL)
-        print(random_json.json())
-        drink_dict = random_json.json()
-        drink_string = drink_dict['drinks'][0]['strDrink']
+        drink_string = get_random_drink()
         answer_array.append(drink_string)
-        print(answer_array)
+
+def add_random_pokemon():
+    for i in range(2):
+        random_pokemon = get_random_pokemon()
+        answer_array.append(random_pokemon)
 
 def shuffle_answers():
     random.shuffle(answer_array)
 
-def get_randompokemon():
-    random_id = random.randint(1,1025)
-    print (random_id)
-    response = requests.get(f'{POKEAPI_URL}{random_id}')
-    response_dict = dict(response.json())
-    poke_name = response_dict['name']
-    return poke_name
-
-def match_drink(poke_name):
-    drink_letter = poke_name[0]
-    if drink_letter == 'u' or drink_letter == 'x':
-        drink_letter = poke_name[1]
-    drink_response = requests.get(f'https://www.thecocktaildb.com/api/json/v1/1/search.php?f={drink_letter}')
-    print(drink_response.status_code)
-    print(drink_response.json())
-    drink_dict = drink_response.json()
-    drink_id = convert_drink(poke_name, len(drink_dict['drinks']))
-    print('Your drink is:', drink_dict['drinks'][drink_id]['strDrink'])
-    answer_array.append(drink_dict['drinks'][drink_id]['strDrink'])
-    return drink_dict['drinks'][drink_id]['strDrink']
-
-def convert_drink(convert_string,length = 1):
-    '''
-    Calculeert een passende drink ID nummer gebasseerd op zijn (binnen de gebasseerd op de ascii waarde van de letters in een string.
-    '''
-    output_value = 1
-    for i in range(len(convert_string)):
-        output_value += ord(convert_string[i])
-
-    drink_id = output_value % length
-    return drink_id
-
 def print_options():
     for i in range(1,4):
-        print(f'Option:{i} {answer_array[i-1]}')
+        print(f'Option [{i}]: {answer_array[i-1]}')
 
 def ask_answer():
     while True:
         answer = input('Please submit your answer: ')
-        if answer == '1' or answer == '2' or answer == '3':
+        if answer in ['1','2','3']:
             return answer
         else:
             print('Please input a valid answer.')
@@ -80,8 +146,6 @@ def check_answer(answer, right_answer):
 
     answer = int(answer)
     if answer_array[answer - 1] == right_answer:
-        print('Correct!')
+        print('Your answer is Correct!')
     else:
-        print('Incorrect!')
-
-
+        print('Your answer is Incorrect!')

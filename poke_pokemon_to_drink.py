@@ -47,7 +47,7 @@ def convert_to_drink(poke_name = ''):
     drink_dict= poke_api.call_api(DRINK_LETTER_URL, drink_letter)
     #Searches with the cocktail API
     drink_id = convert_drink(poke_name,len(drink_dict['drinks']))
-    #Grabs a corresponding drink from the search results.
+    #Decided corresponding ID in the search results.
     return drink_dict['drinks'][drink_id]['strDrink']
 
 def get_letter(poke_name):
@@ -56,7 +56,7 @@ def get_letter(poke_name):
     """
     drink_letter = poke_name[0]
     for i in range(len(poke_name)):
-        if drink_letter == 'u' or drink_letter == 'x':
+        if drink_letter in ['u','x']:
             drink_letter = poke_name[i]
             #fixes a bug where there are no drink results when searching U or X
 

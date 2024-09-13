@@ -1,7 +1,7 @@
 import requests
 import poke_menu as menu
 POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon/'
-def call_api(url, param):
+def call_api(url, param = ''):
     """
     Function that calls an api based on a base URL and a parameter. (custom input)
     """
@@ -16,7 +16,7 @@ def call_api(url, param):
 
 def check_api(response_name):
     """
-    Checks if connection to the API was successful, if not, returns to the main menu of the program.
+    Checks if answer from the API was like expected, if not, returns to the main menu of the program.
     """
     if response_name.status_code != 200:
         print(f'Something went wrong with finding a connection. Error code: {response_name.status_code}')
