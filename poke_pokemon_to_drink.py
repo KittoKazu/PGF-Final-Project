@@ -4,7 +4,7 @@ import poke_menu as menu
 from poke_api import POKEAPI_URL
 
 DRINK_LETTER_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f='
-COCKTAIL_ASCII = 'cocktail_ascii.txt'
+COCKTAIL_ASCII = 'art/cocktail_ascii.txt'
 
 def run_pokemon_to_drink():
     """

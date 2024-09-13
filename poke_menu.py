@@ -2,7 +2,7 @@ import poke_drink_to_pokemon
 import poke_pokemon_to_drink
 import poke_main
 
-MENU_ART = 'menu_ascii.txt'
+MENU_ART = 'art/menu_ascii.txt'
 
 def display_menu():
     """

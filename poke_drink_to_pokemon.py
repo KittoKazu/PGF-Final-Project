@@ -5,7 +5,7 @@ from poke_api import POKEAPI_URL
 DRINK_SEARCH_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 
 MAX_POKEMON = 1025
-POKEMON_ASCII = 'pokemon_ascii.txt'
+POKEMON_ASCII = 'art/pokemon_ascii.txt'
 
 def run_drink_to_pokemon():
     """
