@@ -1,5 +1,8 @@
 import random
 import requests
+
+from poke_api import POKEAPI_URL
+RANDOM_DRINK_URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
 answer_array = []
 
 def run_quiz():
@@ -19,7 +22,7 @@ def run_quiz():
 def add_randoms():
     for i in range(2):
 
-        random_json = requests.get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+        random_json = requests.get(RANDOM_DRINK_URL)
         print(random_json.json())
         drink_dict = random_json.json()
         drink_string = drink_dict['drinks'][0]['strDrink']
@@ -32,7 +35,7 @@ def shuffle_answers():
 def get_randompokemon():
     random_id = random.randint(1,1025)
     print (random_id)
-    response = requests.get(f'https://pokeapi.co/api/v2/pokemon/{random_id}')
+    response = requests.get(f'{POKEAPI_URL}{random_id}')
     response_dict = dict(response.json())
     poke_name = response_dict['name']
     return poke_name

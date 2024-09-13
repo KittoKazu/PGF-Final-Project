@@ -1,17 +1,19 @@
 import poke_menu as menu
 import poke_api
+from poke_api import POKEAPI_URL
 
-POKEAPI_URL = "https://pokeapi.co/api/v2/pokemon/"
 DRINK_SEARCH_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 
 MAX_POKEMON = 1025
+POKEMON_ASCII = 'pokemon_ascii.txt'
 
 def run_drink_to_pokemon():
     """
     Displays an into to this subsystem and displays the final results at the end.
     """
+    menu.print_ascii(POKEMON_ASCII)
     menu.print_stars()
-    print('Welcome to the drink matching menu!')
+    print('Welcome to the Pokemon matching menu!')
     menu.print_stars()
     print("First let's search for a drink. Try Pina Colada or Mojito!")
 

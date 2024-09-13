@@ -1,16 +1,18 @@
 import requests
 import poke_api
 import poke_menu as menu
+from poke_api import POKEAPI_URL
 
 DRINK_LETTER_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f='
-POKEAPI_URL = "https://pokeapi.co/api/v2/pokemon/"
+COCKTAIL_ASCII = 'cocktail_ascii.txt'
 
 def run_pokemon_to_drink():
     """
     Displays an intro to this subsystem and displays the final results at the end.
     """
+    menu.print_ascii(COCKTAIL_ASCII)
     menu.print_stars()
-    print('Welcome to the Pokemon matching menu!')
+    print('Welcome to the drink matching menu!')
     menu.print_stars()
     print("First let's search for a Pokemon, try Charizard or Dratini!")
 
