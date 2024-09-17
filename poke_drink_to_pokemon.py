@@ -26,7 +26,7 @@ def run_drink_to_pokemon():
 
 def convert_pokemon(convert_string):
     """
-    Calculates the ID of a Pokémon based on the ascii codes of the drink name.Then returns the name of the Pokemon
+    Calculates the ID of a Pokémon based on the ascii codes of the drink name.Then returns the name of the Pokémon
     """
     output_value = 1
     for i in range(len(convert_string)):

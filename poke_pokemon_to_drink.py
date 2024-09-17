@@ -25,22 +25,22 @@ def run_pokemon_to_drink():
 
 def get_pokemon_input():
     """
-    Asks the user for a Pokemon name, then proceeds to check if it is an existing name.
+    Asks the user for a Pokémon name, then proceeds to check if it is an existing name.
     """
     while True:
-        poke_input = input("Please enter the Pokemon you'd like to convert:").lower()
+        poke_input = input("Please enter the Pokémon you'd like to convert:").lower()
         if poke_input.isalpha():
             poke_response = requests.get(f'{POKEAPI_URL}{poke_input}')
             if poke_response.status_code == 200:
                 return poke_input
             else:
-                print("Please enter a valid Pokemon name.")
+                print("Please enter a valid Pokémon name.")
         else:
             print('Please only use letters to type out the name.')
 
 def convert_to_drink(poke_name = ''):
     """
-    Converts the Pokemon name to drink search and corresponding ID.
+    Converts the Pokémon name to drink search and corresponding ID.
     """
     drink_letter = get_letter(poke_name)
     #Gets the first letter
@@ -52,7 +52,7 @@ def convert_to_drink(poke_name = ''):
 
 def get_letter(poke_name):
     """
-    Generates the first letter of the Pokemon name to search for a drink and prevents bugs where there are no results.
+    Generates the first letter of the Pokémon name to search for a drink and prevents bugs where there are no results.
     """
     drink_letter = poke_name[0]
     for i in range(len(poke_name)):
@@ -63,9 +63,9 @@ def get_letter(poke_name):
     return drink_letter
 
 def convert_drink(convert_string,length = 1):
-    '''
-    Calculates a drink ID number based on the ascii values of the Pokemon name and the amount of results.
-    '''
+    """
+    Calculates a drink ID number based on the ascii values of the Pokémon name and the amount of results.
+    """
     output_value = 1
     for i in range(len(convert_string)):
         output_value += ord(convert_string[i])

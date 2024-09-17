@@ -1,7 +1,4 @@
 import random
-
-from requests import options
-
 import poke_api
 import poke_menu as menu
 import poke_pokemon_to_drink
@@ -26,7 +23,7 @@ def run_quiz():
 
 def choose_quiz_type():
     """
-    Asks the user if they want a question about a matching Pokemon or a matching Drink.
+    Asks the user if they want a question about a matching Pokémon or a matching Drink.
     """
     print('Please choose the type of quiz \nGuess drink with Pokemon [1]\nGuess Pokemon with drink [2]')
     while True:
@@ -62,7 +59,7 @@ def run_pokemon_quiz():
     print_options()
     answer = ask_answer()
     check_answer(answer, right_answer)
-    print(f'The right answer was: {right_answer.upper()}')
+    print(f'The right answer was: {right_answer.capitalize()}')
 
 def run_drink_quiz():
     menu.print_stars()
@@ -132,7 +129,7 @@ def shuffle_answers():
 
 def print_options():
     for i in range(1,4):
-        print(f'Option [{i}]: {answer_array[i-1]}')
+        print(f'Option [{i}]: {answer_array[i-1].capitalize()}')
 
 def ask_answer():
     while True:
