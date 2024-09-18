@@ -50,11 +50,11 @@ def run_pokemon_quiz():
     question_drink = pick_drink(question_type)
     menu.print_stars()
     print(f'Your drink is: {question_drink}')
-    right_answer = poke_drink_to_pokemon.convert_pokemon(question_drink)
+    right_answer = poke_drink_to_pokemon.convert_to_pokemon(question_drink)
 
     answer_array.append(right_answer)
     add_random_pokemon()
-    shuffle_answers()
+    random.shuffle(answer_array)
 
     print_options()
     answer = ask_answer()
@@ -72,7 +72,7 @@ def run_drink_quiz():
 
     answer_array.append(right_answer)
     add_random_drinks()
-    shuffle_answers()
+    random.shuffle(answer_array)
 
     print_options()
     answer = ask_answer()
@@ -124,9 +124,6 @@ def add_random_pokemon():
         random_pokemon = get_random_pokemon()
         answer_array.append(random_pokemon)
 
-def shuffle_answers():
-    random.shuffle(answer_array)
-
 def print_options():
     for i in range(1,4):
         print(f'Option [{i}]: {answer_array[i-1].capitalize()}')
@@ -142,6 +139,7 @@ def ask_answer():
 def check_answer(answer, right_answer):
 
     answer = int(answer)
+    menu.print_stars()
     if answer_array[answer - 1] == right_answer:
         print('Your answer is Correct!')
     else:

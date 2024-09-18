@@ -18,13 +18,13 @@ def run_drink_to_pokemon():
     print("First let's search for a drink. Try Pina Colada or Mojito!")
 
     drink_string = get_drinkinput()
-    poke_name = convert_pokemon(drink_string)
+    poke_name = convert_to_pokemon(drink_string)
 
     menu.print_stars()
     print(f'Your searched drink is: {drink_string}')
     print(f'Your matching pokemon is: {poke_name.capitalize()}')
 
-def convert_pokemon(convert_string):
+def convert_to_pokemon(convert_string):
     """
     Calculates the ID of a Pokémon based on the ascii codes of the drink name.Then returns the name of the Pokémon
     """
