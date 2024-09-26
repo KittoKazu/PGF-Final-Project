@@ -46,7 +46,7 @@ def get_func_input():
     while True:
         input_value = input('Please enter your choice: ').lower()
         if input_value in ['d','p','q']:
-            #Checks if the input matches one of the valid options.
+            #Checks if the input matches one of the valid options in list instead of elif statements.
             return input_value
         else:
             #Handles error and asks user for another input.
@@ -60,11 +60,13 @@ def ask_to_resume():
     while True:
         print_stars()
         resume_input = input('Would you like to continue using the program? (Y/N): ').lower()
-        if resume_input == 'y' or resume_input == 'n':
+        if resume_input in ['y','n']:
             if resume_input == 'n':
                 exit()
+                #Ends the program by forcing an exit.
             if resume_input == 'y':
                 poke_main.main()
+                #Calls the main menu again in order to keep the program running.
         else:
             print('Please enter a valid input.')
 
@@ -78,3 +80,4 @@ def print_ascii(filepath):
             print(ascii_art)
     except FileNotFoundError:
         print('No .txt file found for ascii art.')
+        #Handles errors when art files are missing, does not affect program functionality.

@@ -6,6 +6,7 @@ POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon/'
 def call_api(url, param = ''):
     """
     Function that calls an api based on a base URL and a parameter. (custom input)
+    Returns a dictionary of the response.
     """
     try:
         response = requests.get(f"{url}{param}")
